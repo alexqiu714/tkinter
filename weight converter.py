@@ -6,6 +6,16 @@ def c():
     e1.delete(0,END)
     e1.insert(0,g)
 
+    p=float(e.get())
+    g = p*2.205
+    e2.delete(0,END)
+    e2.insert(0,g)
+
+    p=float(e.get())
+    g = p*35.274
+    e3.delete(0,END)
+    e3.insert(0,g)
+
 root = Tk()
 root.geometry("500x500")
 root.title("weight converter")
