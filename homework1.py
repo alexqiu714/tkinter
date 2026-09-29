@@ -32,9 +32,57 @@ def c():
     t -= 1
     root.after(1000, c)
 
+def i():
+    global t1
+    e1.config(state="disabled")
+    e2.config(state="disabled")
+    b.config(state="disabled")
+    b1.config(state="disabled")
+    b2.config(state="disabled")
+    t1=5*60
+    c1()
 
+def c1():
+    global t1
+    min,sec=divmod(t1,60)
+    m.set(min)
+    s1.set(sec)
+    if t1 == 0:
+        messagebox.showinfo("time", "Times up!")
+        e1.config(state="normal")
+        e2.config(state="normal")
+        b.config(state="normal")
+        b1.config(state="normal")
+        b2.config(state="normal")
+        return
+    t1 -= 1
+    root.after(1000, c1)
 
-#def i():
+def t():
+    global t2
+    e1.config(state="disabled")
+    e2.config(state="disabled")
+    b.config(state="disabled")
+    b1.config(state="disabled")
+    b2.config(state="disabled")
+    t2=10*60
+    c2()
+
+def c2():
+    global t2
+    min,sec=divmod(t2,60)
+    m.set(min)
+    s1.set(sec)
+    if t2 == 0:
+        messagebox.showinfo("time", "Times up!")
+        e1.config(state="normal")
+        e2.config(state="normal")
+        b.config(state="normal")
+        b1.config(state="normal")
+        b2.config(state="normal")
+        return
+    t2 -= 1
+    root.after(1000, c2)
 
 
 m=StringVar()
@@ -52,10 +100,10 @@ e2.grid(row=0,column=2)
 b=Button(root,text="3 min", font=("Arial", 20), command=s)
 b.grid(row=1,column=0)
 
-b1=Button(root,text="5 min", font=("Arial", 20))
+b1=Button(root,text="5 min", font=("Arial", 20), command=i)
 b1.grid(row=1,column=1)
 
-b2=Button(root,text="10 min", font=("Arial", 20))
+b2=Button(root,text="10 min", font=("Arial", 20), command=t)
 b2.grid(row=1,column=2,columnspan=3)
 
 root.mainloop()
