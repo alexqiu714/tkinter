@@ -1,109 +1,55 @@
 from tkinter import *
-from tkinter import messagebox
+from tkinter.ttk import Combobox
 
 root=Tk()
 root.geometry("500x500")
-root.title("kitchen timer")
+root.title("pizza app")
 
-def s():
-    global t
-    e1.config(state="disabled")
-    e2.config(state="disabled")
-    b.config(state="disabled")
-    b1.config(state="disabled")
-    b2.config(state="disabled")
-    t=3*60
-    c()
+l=Label(root, text="Welcome to Pizza Hut", font=("Arial", 25))
+l.grid(row=0, column=0)
 
+l1=Label(root, text="Select pizza:")
+l1.grid(row=1, column=0)
 
-def c():
-    global t
-    min,sec=divmod(t,60)
-    m.set(min)
-    s1.set(sec)
-    if t == 0:
-        messagebox.showinfo("time", "Times up!")
-        e1.config(state="normal")
-        e2.config(state="normal")
-        b.config(state="normal")
-        b1.config(state="normal")
-        b2.config(state="normal")
-        return
-    t -= 1
-    root.after(1000, c)
+p=StringVar()
+c=Combobox(root, textvariable=p)
+c["values"]=["Margherita", "Salami", "Prosciutto", "Vegetable"]
+c.grid(row=1,column=1)
 
-def i():
-    global t1
-    e1.config(state="disabled")
-    e2.config(state="disabled")
-    b.config(state="disabled")
-    b1.config(state="disabled")
-    b2.config(state="disabled")
-    t1=5*60
-    c1()
+q=StringVar()
+c1=Combobox(root, textvariable=q)
+c1["values"]=["1", "2", "3"]
+c1.grid(row=2,column=1)
 
-def c1():
-    global t1
-    min,sec=divmod(t1,60)
-    m.set(min)
-    s1.set(sec)
-    if t1 == 0:
-        messagebox.showinfo("time", "Times up!")
-        e1.config(state="normal")
-        e2.config(state="normal")
-        b.config(state="normal")
-        b1.config(state="normal")
-        b2.config(state="normal")
-        return
-    t1 -= 1
-    root.after(1000, c1)
+f = Frame(root)
+f.grid(row=3,column=1)
 
-def t():
-    global t2
-    e1.config(state="disabled")
-    e2.config(state="disabled")
-    b.config(state="disabled")
-    b1.config(state="disabled")
-    b2.config(state="disabled")
-    t2=10*60
-    c2()
+s=StringVar()
+r=Radiobutton(f, text="s", variable=s, value="small")
+r.grid(row=3, column=1)
 
-def c2():
-    global t2
-    min,sec=divmod(t2,60)
-    m.set(min)
-    s1.set(sec)
-    if t2 == 0:
-        messagebox.showinfo("time", "Times up!")
-        e1.config(state="normal")
-        e2.config(state="normal")
-        b.config(state="normal")
-        b1.config(state="normal")
-        b2.config(state="normal")
-        return
-    t2 -= 1
-    root.after(1000, c2)
+r1=Radiobutton(f, text="m", variable=s, value="medium")
+r1.grid(row=3, column=2)
 
+r2=Radiobutton(f, text="l", variable=s, value="large")
+r2.grid(row=3, column=3)
 
-m=StringVar()
-m.set("00")
+l2=Label(root, text="Enter quantithy:")
+l2.grid(row=2, column=0)
 
-s1=StringVar()
-s1.set("00")
+l3=Label(root, text="Enter size:")
+l3.grid(row=3, column=0)
 
-e1=Entry(root, width=5, textvariable=m)
-e1.grid(row=0,column=1)
+def r():
+    g=s.get()
+    q1=q.get()
+    p1=p.get()
+    l4.config(text="You ordered " + q1 + " " + p1 +  " " + g + " size pizzas")
 
-e2=Entry(root, width=5, textvariable=s1)
-e2.grid(row=0,column=2)
+b=Button(root, text="Order", command=r)
+b.grid(row=4,column=1)
 
-b=Button(root,text="3 min", font=("Arial", 20), command=s)
-b.grid(row=1,column=0)
-
-b1=Button(root,text="5 min", font=("Arial", 20), command=i)
-b1.grid(row=1,column=1)
-
-b2=Button(root,text="10 min", font=("Arial", 20), command=t)
-b2.grid(row=1,column=2,columnspan=3)
+l4=Label(root)
+l4.grid(row=5,column=0)
 
 root.mainloop()
