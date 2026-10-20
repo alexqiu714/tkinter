@@ -1,55 +1,45 @@
 from tkinter import *
-from tkinter.ttk import Combobox
+from tkinter.filedialog import *
 
 root=Tk()
 root.geometry("500x500")
-root.title("pizza app")
+root.title("color change")
 
-l=Label(root, text="Welcome to Pizza Hut", font=("Arial", 25))
-l.grid(row=0, column=0)
+l=Listbox(root, width=30,height=23)
+l.grid(row=5,column=0)
+l1=["blue","red","yellow"]
+for i in l1:
+    l.insert(END, i)
 
-l1=Label(root, text="Select pizza:")
-l1.grid(row=1, column=0)
+def a():
+    g=e.get()
+    l.insert(END, g)
 
-p=StringVar()
-c=Combobox(root, textvariable=p)
-c["values"]=["Margherita", "Salami", "Prosciutto", "Vegetable"]
-c.grid(row=1,column=1)
+def c():
+    l.delete(0, END)
 
-q=StringVar()
-c1=Combobox(root, textvariable=q)
-c1["values"]=["1", "2", "3"]
-c1.grid(row=2,column=1)
+def d():
+    index=l.curselection()
+    l.delete(index)
 
-f = Frame(root)
-f.grid(row=3,column=1)
+def a1():
+    bc=l.curselection()
+    z=l.get(bc)
+    root.config(bg=z)
 
-s=StringVar()
-r=Radiobutton(f, text="s", variable=s, value="small")
-r.grid(row=3, column=1)
+e=Entry(root)
+e.grid(row=0,column=0)
 
-r1=Radiobutton(f, text="m", variable=s, value="medium")
-r1.grid(row=3, column=2)
+b=Button(root, text="Add", command=a)
+b.grid(row=1,column=0)
 
-r2=Radiobutton(f, text="l", variable=s, value="large")
-r2.grid(row=3, column=3)
+b1=Button(root, text="Delete", command=d)
+b1.grid(row=2,column=0)
 
-l2=Label(root, text="Enter quantithy:")
-l2.grid(row=2, column=0)
+b2=Button(root, text="Apply", command=a1)
+b2.grid(row=3,column=0)
 
-l3=Label(root, text="Enter size:")
-l3.grid(row=3, column=0)
-
-def r():
-    g=s.get()
-    q1=q.get()
-    p1=p.get()
-    l4.config(text="You ordered " + q1 + " " + p1 +  " " + g + " size pizzas")
-
-b=Button(root, text="Order", command=r)
-b.grid(row=4,column=1)
-
-l4=Label(root)
-l4.grid(row=5,column=0)
+b3=Button(root, text="Clear", command=c)
+b3.grid(row=4,column=0)
 
 root.mainloop()
