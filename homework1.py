@@ -1,45 +1,33 @@
 from tkinter import *
-from tkinter.filedialog import *
+import random
+from tkinter import messagebox
 
 root=Tk()
 root.geometry("500x500")
-root.title("color change")
+root.title("ls")
 
-l=Listbox(root, width=30,height=23)
-l.grid(row=5,column=0)
-l1=["blue","red","yellow"]
-for i in l1:
-    l.insert(END, i)
+l=Label(root,text="0")
+l.grid(row=0, column=0)
 
-def a():
-    g=e.get()
-    l.insert(END, g)
+l1=Label(root,text="0")
+l1.grid(row=0, column=1)
+
+l2=Label(root,text="0")
+l2.grid(row=0, column=2)
 
 def c():
-    l.delete(0, END)
+    r=random.randint(0,9)
+    r1=random.randint(0,9)
+    r2=random.randint(0,9)
+    l.config(text= str(r))
+    l1.config(text= str(r1))
+    l2.config(text= str(r2))
+    if r == r1 and r == r2:
+        messagebox.showinfo("Win", "JACKPOT! You win 1000$")
+    if r == r1 or r==r2 or r1==r2:
+        messagebox.showinfo("Win", "Mini prize! You win 10$")
 
-def d():
-    index=l.curselection()
-    l.delete(index)
-
-def a1():
-    bc=l.curselection()
-    z=l.get(bc)
-    root.config(bg=z)
-
-e=Entry(root)
-e.grid(row=0,column=0)
-
-b=Button(root, text="Add", command=a)
-b.grid(row=1,column=0)
-
-b1=Button(root, text="Delete", command=d)
-b1.grid(row=2,column=0)
-
-b2=Button(root, text="Apply", command=a1)
-b2.grid(row=3,column=0)
-
-b3=Button(root, text="Clear", command=c)
-b3.grid(row=4,column=0)
+b=Button(root,text="Spin", command=c)
+b.grid(row=1, column=0, columnspan=3)
 
 root.mainloop()
