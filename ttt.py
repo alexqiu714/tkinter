@@ -1,5 +1,6 @@
 from tkinter import *
 from tkinter import messagebox
+import random
 
 root=Tk()
 root.geometry("500x500")
@@ -10,12 +11,16 @@ board=[]
 def onclick(row,column):
     global cp
     global count
+    global mode
     if board[row][column]["text"]=="":
         board[row][column]["text"]=cp
-        if cp=="x":
-            cp="o"
-        elif cp=="o":
-            cp="x"
+        if mode=="single" and cp=="o":
+            c()
+        else:
+            if cp=="x":
+                cp="o"
+            elif cp=="o":
+                cp="x"
         count += 1
     if count==9:
         messagebox.showinfo("result", "Draw!")
@@ -53,7 +58,6 @@ def w():
 
 cp="x"
 
-gamemode="single"
 gameover=False
 
 count=0
@@ -63,9 +67,28 @@ mode="multi"
 def m(x):
     global mode
     mode=x
+    r()
 
 def c():
-    []
+    global gameover
+    global count
+    global cp
+    el=[]
+    for row in range(3):
+        for column in range(3):
+            if board[row][column]["text"]=="":
+                el.append((row,column))
+    if el:
+        r,c=random.choice(el)
+        board[r][c]["text"]=="o"
+        count+=1
+        winner=w()
+        if winner:
+            messagebox.showinfo("result", winner + " won!")
+            gameover=True
+            r()
+        else:
+            cp="x"
 
 for row in range(3):
     newrow=[]
@@ -83,6 +106,5 @@ for row in range(3):
     for column in range(3):
         board [row][column] = Button(root, width=15, height=8, command=lambda r=row, c=column:onclick(r,c))
         board [row][column].grid(row=row, column=column)
-
 
 root.mainloop()
