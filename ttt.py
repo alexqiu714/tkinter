@@ -12,9 +12,10 @@ def onclick(row,column):
     global cp
     global count
     global mode
+    global gameover
     if board[row][column]["text"]=="":
         board[row][column]["text"]=cp
-        if mode=="single" and cp=="o":
+        if mode=="single" and cp=="x":
             c()
         else:
             if cp=="x":
@@ -36,12 +37,14 @@ def onclick(row,column):
 
 def r():
     global cp
+    global count
     global gameover
     for row in range(3):
         for column in range(3):
             board[row][column]["text"]=""
     gameover=False  
     cp="x"
+    count="0"
 
 def w():
     for r in range(3):
@@ -79,8 +82,8 @@ def c():
             if board[row][column]["text"]=="":
                 el.append((row,column))
     if el:
-        r,c=random.choice(el)
-        board[r][c]["text"]=="o"
+        rr,cc=random.choice(el)
+        board[rr][cc]["text"]="o"
         count+=1
         winner=w()
         if winner:
@@ -96,10 +99,10 @@ for row in range(3):
         newrow.append(None)
     board.append(newrow)
 
-b=Button(root,text="Singleplayer", command=lambda:m("Single"))
+b=Button(root,text="Singleplayer", command=lambda:m("single"))
 b.grid(row=3, column=0)
 
-b1=Button(root,text="Multiplayer", command=lambda:m("Multi"))
+b1=Button(root,text="Multiplayer", command=lambda:m("multi"))
 b1.grid(row=3, column=2)
 
 for row in range(3):
