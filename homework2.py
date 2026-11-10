@@ -1,29 +1,36 @@
 from tkinter import *
 
 root=Tk()
-root.geometry("500x500")
+root.geometry("700x700")
 root.title("adress book")
 
-l=Label(root,text="My adress book")
+d={}
+
+def u():
+    key=e.get()
+    d[key]=(e1.get(), e2.get(), e3.get(), e4.get(), e5.get())
+    li.insert(0, key)
+
+l=Label(root,text="My address book")
 l.grid(row=0,column=0)
 
 b=Button(root,text="Open")
 b.grid(row=0,column=1)
 
 l1=Label(root,text="Name")
-l1.grid(row=1,column=0)
+l1.grid(row=1,column=1)
 
 l2=Label(root,text="Address")
-l2.grid(row=2,column=0)
+l2.grid(row=2,column=1)
 
 l3=Label(root,text="Mobile")
-l3.grid(row=3,column=0)
+l3.grid(row=3,column=1)
 
 l4=Label(root,text="Email")
-l4.grid(row=4,column=0)
+l4.grid(row=4,column=1)
 
 l5=Label(root,text="Birthday")
-l5.grid(row=5,column=0)
+l5.grid(row=5,column=1)
 
 e=Entry(root)
 e.grid(row=1,column=2)
@@ -43,7 +50,7 @@ e4.grid(row=5,column=2)
 e5=Entry(root)
 e5.grid(row=6,column=2)
 
-b1=Button(root,text="Update/add")
+b1=Button(root,text="Update/add", command=u)
 b1.grid(row=7,column=2)
 
 b2=Button(root,text="Edit")
@@ -51,5 +58,11 @@ b2.grid(row=7,column=0)
 
 b3=Button(root,text="Delete")
 b3.grid(row=7,column=1)
+
+b4=Button(root,text="Save", width=15)
+b4.grid(row=8,column=1)
+
+li=Listbox(root, width=40, height=25)
+li.grid(row=1,column=0,rowspan=5)
 
 root.mainloop()
