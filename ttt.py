@@ -44,18 +44,18 @@ def r():
             board[row][column]["text"]=""
     gameover=False  
     cp="x"
-    count="0"
+    count=0
 
 def w():
     for r in range(3):
-        if board[r][0]["text"]==board[r][1]["text"]==board[r][2]["text"]!=" ":
+        if board[r][0]["text"]==board[r][1]["text"]==board[r][2]["text"]!="":
             return board[r][0]["text"]  
     for c in range(3):
-        if board[0][c]["text"]==board[1][c]["text"]==board[2][c]["text"]!=" ":
+        if board[0][c]["text"]==board[1][c]["text"]==board[2][c]["text"]!="":
             return board[0][c]["text"]  
-    if board[0][0]["text"]==board[1][1]["text"]==board[2][2]["text"]!=" ":
+    if board[0][0]["text"]==board[1][1]["text"]==board[2][2]["text"]!="":
         return board[0][0]["text"]
-    if board[0][2]["text"]==board[1][1]["text"]==board[2][0]["text"]!=" ":
+    if board[0][2]["text"]==board[1][1]["text"]==board[2][0]["text"]!="":
         return board[0][2]["text"]    
     return None
 
