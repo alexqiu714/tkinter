@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 root=Tk()
 root.geometry("700x700")
@@ -16,7 +17,7 @@ def u():
     e3.delete(0,END)
     e4.delete(0,END)
 
-def e():
+def ed():
     print("called") 
     index=li.curselection()
     e.insert(0,li.get(index))
@@ -26,6 +27,13 @@ def e():
     e3.insert(0, details[2])
     e4.insert(0, details[3])
     e5.insert(0, details[4])
+
+def dd(event):
+    index1=li.curselection()
+    name=li.get(index1)
+    d1=d[name]
+    ad="name: "+name+"\n"+"address: "+d1[0]+"\n"+"mobile: "+d1[1]+"\n"+"email: "+d1[2]+"\n"+"birthday: "+d1[3]
+    messagebox.showinfo("Details", ad)
 
 l=Label(root,text="My address book")
 l.grid(row=0,column=0)
@@ -69,7 +77,7 @@ e5.grid(row=6,column=2)
 b1=Button(root,text="Update/add", command=u)
 b1.grid(row=7,column=2)
 
-b2=Button(root,text="Edit", command=e)
+b2=Button(root,text="Edit", command=ed)
 b2.grid(row=7,column=0)
 
 b3=Button(root,text="Delete")
@@ -80,5 +88,6 @@ b4.grid(row=8,column=1)
 
 li=Listbox(root, width=40, height=25)
 li.grid(row=1,column=0,rowspan=5)
+li.bind('<<ListboxSelect>>',dd)
 
 root.mainloop()
